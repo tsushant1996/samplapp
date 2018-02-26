@@ -1,20 +1,45 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="row">
+  <div class="col-md-4">
 
+
+  </div>
+  <div class="col-md-4">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" encType="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text"   [(ngModel)] = "name"  name ="name" class="form-control" id="name" placeholder="Enter name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email"   [(ngModel)] = "email" name="email" class="form-control" id="email" placeholder="email">
+          </div>
+          <div class="form-group">
+            <label for="upload">Upload Image</label>
+            <input type="file"  (change)="uploadFile($event)"  name ="file" class="form-control" id="upload" placeholder="upload image">
+          </div>
+          <div class="form-group">
+              <label>Choose Data</label>
+            <input type="text"
+             [(ngModel)]="date"
+             name="date"
+             placeholder="click in box to enter the date"
+            class="form-control"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            #dp="bsDatepicker"
+            bsDatepicker [(bsValue)]="bsValue">
+          </div>
+          <div class="form-group">
+            <label for="sel1">user ID</label>
+            <select [(ngModel)]="userId" class="form-control" name="userId" id="sel1" required>
+              <option required *ngFor="let user of users" [value]="user._id">{{ user._id}}</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div *ngIf="userProfile">
+          <h3>your information has been saved in database</h3>
+        Name:{{userProfile.name}}<br>&nbsp;Email:{{userProfile.email}}<br>&nbsp;Date:{{userProfile.date}}<br>&nbsp;img:{{userProfile.img}}<br>&nbsp;userId:{{userProfile.userId}}<br>&nbsp;ObjectID:{{userProfile._id}}
+      </div>
+  </div>
+</div>
